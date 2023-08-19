@@ -2,8 +2,8 @@ package Xadrez;
 
 import java.awt.MultipleGradientPaint.ColorSpaceType;
 
-import Mesa.Posicao;
-import Mesa.Tabuleiro;
+import MesaDoJogo.Posicao;
+import MesaDoJogo.Tabuleiro;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 

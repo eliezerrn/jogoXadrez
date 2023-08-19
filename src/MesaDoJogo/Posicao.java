@@ -1,4 +1,4 @@
-package Mesa;
+package MesaDoJogo;
 
 public class Posicao {
 
