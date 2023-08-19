@@ -1,6 +1,11 @@
 package Xadrez;
 
+import java.awt.MultipleGradientPaint.ColorSpaceType;
+
+import Mesa.Posicao;
 import Mesa.Tabuleiro;
+import Xadrez.pecas.Rei;
+import Xadrez.pecas.Torre;
 
 public class XadrezPartida {
 
@@ -8,6 +13,7 @@ public class XadrezPartida {
 	
 	public XadrezPartida() {
 		tabuleiro = new Tabuleiro(8, 8);
+		iniciarPartida();
 	}
 	
 	public XadrezPeca [][] getPecas(){
@@ -20,6 +26,13 @@ public class XadrezPartida {
 		}
 		
 		return matriz;
+	}
+	
+	private void iniciarPartida() {
+		tabuleiro.lugarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
+		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0, 4));
+		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(7, 4));
+		
 	}
 	
 }
