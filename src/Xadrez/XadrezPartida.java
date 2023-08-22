@@ -29,10 +29,21 @@ public class XadrezPartida {
 		tabuleiro.informaPeca(xadrezPeca,new XadrezPosicao(coluna, linha).toPosicao());
 	}
 	
-	private void iniciarPartida() {
-		informaNovaPeca('b', 6, new Torre(tabuleiro, Cor.BRANCO));
-		informaNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
-		informaNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));				
+	private void iniciarPartida() {	
+				
+		informaNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
+        informaNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
+        informaNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
+        informaNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
+        informaNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
+
+        informaNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
+        informaNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
+        informaNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETO));
+        informaNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
+        informaNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
+        informaNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
 	}
 	
 }
