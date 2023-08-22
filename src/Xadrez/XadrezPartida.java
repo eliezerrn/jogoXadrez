@@ -1,5 +1,7 @@
 package Xadrez;
 
+import MesaDoJogo.Peca;
+import MesaDoJogo.Posicao;
 import MesaDoJogo.Tabuleiro;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
@@ -23,6 +25,32 @@ public class XadrezPartida {
 		}
 		
 		return matriz;
+	}
+	
+	public XadrezPeca executarJogada(XadrezPosicao posicaoOrigem, XadrezPosicao posicaoDestino) {
+		
+		Posicao origem = posicaoOrigem.toPosicao();
+		Posicao destino = posicaoDestino.toPosicao();
+		
+		validarPosicao(origem);
+		
+		Peca pecaCapturada = moverPeca(origem,destino);
+		return (XadrezPeca) pecaCapturada;
+	}
+	
+	private Peca moverPeca(Posicao origem, Posicao destino) {
+		Peca p = tabuleiro.removerPeca(origem);
+		Peca capturada = tabuleiro.removerPeca(destino);
+		
+		tabuleiro.informaPeca(p, destino);
+		
+		return capturada;
+	}
+	
+	private void validarPosicao(Posicao posicao) {
+		if(!tabuleiro.isPosicaoExiste(posicao)) {
+			throw new XadrezExcessao("Não foi possível capturar a peça, ela não existe. (ERN XP2).");
+		}
 	}
 	
 	private void informaNovaPeca(char coluna, int linha, XadrezPeca xadrezPeca) {

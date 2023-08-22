@@ -1,6 +1,8 @@
 package MesaDoJogo;
 
-public class TabuleiroExcessao extends RuntimeException{
+import Xadrez.XadrezExcessao;
+
+public class TabuleiroExcessao extends XadrezExcessao {
 
 	private static final long serialVersionUID = 1L;
 
