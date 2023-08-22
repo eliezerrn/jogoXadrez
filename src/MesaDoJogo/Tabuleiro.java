@@ -1,7 +1,5 @@
 package MesaDoJogo;
 
-import Xadrez.pecas.Torre;
-
 public class Tabuleiro {
 	
 	private int linhas;
@@ -42,7 +40,7 @@ public class Tabuleiro {
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
-	public void lugarPeca(Peca peca, Posicao posicao) {
+	public void informaPeca(Peca peca, Posicao posicao) {
 		if(isTemPeca(posicao)) {
 			throw new TabuleiroExcessao("Já existe peça na posicção " + posicao + "! (ERN04)");
 		}

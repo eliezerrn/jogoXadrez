@@ -1,8 +1,5 @@
 package Xadrez;
 
-import java.awt.MultipleGradientPaint.ColorSpaceType;
-
-import MesaDoJogo.Posicao;
 import MesaDoJogo.Tabuleiro;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
@@ -28,11 +25,14 @@ public class XadrezPartida {
 		return matriz;
 	}
 	
+	private void informaNovaPeca(char coluna, int linha, XadrezPeca xadrezPeca) {
+		tabuleiro.informaPeca(xadrezPeca,new XadrezPosicao(coluna, linha).toPosicao());
+	}
+	
 	private void iniciarPartida() {
-		tabuleiro.lugarPeca(new Torre(tabuleiro, Cor.BRANCO), new Posicao(2, 1));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.PRETO), new Posicao(0, 4));
-		tabuleiro.lugarPeca(new Rei(tabuleiro, Cor.BRANCO), new Posicao(7, 4));
-		
+		informaNovaPeca('b', 6, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		informaNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));				
 	}
 	
 }
