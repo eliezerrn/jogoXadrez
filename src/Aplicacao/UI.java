@@ -3,6 +3,8 @@ package Aplicacao;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 import Xadrez.Cor;
 import Xadrez.XadrezPeca;
 import Xadrez.XadrezPosicao;
@@ -51,16 +53,31 @@ public class UI {
 		for (int linha = 0; linha < pecas.length; linha++) {
 			System.out.print((8 - linha) + " ");
 			for (int coluna = 0; coluna < pecas.length; coluna++) {
-				imprimirPeca(pecas[linha][coluna]);
+				imprimirPeca(pecas[linha][coluna], false);
 			}
 			System.out.println("");
 		}
 		System.out.println("  A B C D E F G H");
 	}
 	
-	private static void imprimirPeca(XadrezPeca peca) {
+	public static void imprimirTabuleiro(XadrezPeca[][] pecas, boolean [][] movimentosPossiveis) {
+		for (int linha = 0; linha < pecas.length; linha++) {
+			System.out.print((8 - linha) + " ");
+			for (int coluna = 0; coluna < pecas.length; coluna++) {
+				imprimirPeca(pecas[linha][coluna], movimentosPossiveis[linha][coluna]);
+			}
+			System.out.println("");
+		}
+		System.out.println("  A B C D E F G H");
+	}
+	
+	private static void imprimirPeca(XadrezPeca peca, boolean corDeFundo) {
+		if(corDeFundo) {
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}
+		
     	if (peca == null) {
-            System.out.print("-");
+            System.out.print("-" + ANSI_RESET);
         }
         else {
             if (peca.getCor() == Cor.BRANCO) {
