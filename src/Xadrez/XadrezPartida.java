@@ -51,6 +51,9 @@ public class XadrezPartida {
 		if(!tabuleiro.isPosicaoExiste(posicao)) {
 			throw new XadrezExcessao("Não foi possível capturar a peça, ela não existe. (ERN XP2).");
 		}
+		if(!tabuleiro.peca(posicao).isTemMovimentoPossivel()) {
+			throw new XadrezExcessao("Não existe movimentos possíveis para esta peça (ERN XP3");
+		}
 	}
 	
 	private void informaNovaPeca(char coluna, int linha, XadrezPeca xadrezPeca) {
