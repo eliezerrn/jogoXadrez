@@ -3,9 +3,8 @@ package Aplicacao;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-
 import Xadrez.Cor;
+import Xadrez.XadrezPartida;
 import Xadrez.XadrezPeca;
 import Xadrez.XadrezPosicao;
 
@@ -47,6 +46,14 @@ public class UI {
 		} catch (RuntimeException e) {
 			throw new InputMismatchException("Erro ao ler a posição do xadrez, as posições vão de a até h e 0 a 8. (ERN UI01)");
 		}
+	}
+	
+	public static void imprimirPartida(XadrezPartida partida) {
+		imprimirTabuleiro(partida.getPecas());
+		System.out.println();
+		System.out.println("Turno :" + partida.getTurno());
+		System.out.println("Aguardando jogador: " + partida.getJogadorAtual());
+		
 	}
 	
 	public static void imprimirTabuleiro(XadrezPeca[][] pecas) {

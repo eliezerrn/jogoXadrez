@@ -19,7 +19,9 @@ public class Programa {
 			try {
 				
 				UI.limparTela();
-				UI.imprimirTabuleiro(partida.getPecas());
+				//UI.imprimirTabuleiro(partida.getPecas());
+				UI.imprimirPartida(partida);
+				
 				System.out.println();
 				System.out.println("Posição origem:");
 				XadrezPosicao origem = UI.lerPosicaoXadrez(sc);
