@@ -14,6 +14,7 @@ public class XadrezPartida {
 	private int turno;
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
+	private boolean check;
 	
 	private List <Peca> pecasDoTabuleiro = new ArrayList<>();
 	private List <Peca> pecasCapturadas = new ArrayList<>();
@@ -32,6 +33,10 @@ public class XadrezPartida {
 	
 	public Cor getJogadorAtual() {
 		return jogadorAtual;
+	}
+	
+	public boolean getCheck() {
+		return check;
 	}
 	
 	public XadrezPeca [][] getPecas(){
@@ -62,6 +67,13 @@ public class XadrezPartida {
 		
 		Peca pecaCapturada = moverPeca(origem,destino);
 		
+		if(testeCheck(jogadorAtual)) {
+			desfazerMovimento(origem, destino, pecaCapturada);
+			throw new XadrezExcessao("VocÊ não pode se colocar em check");
+		}
+		
+		check = (testeCheck(oponente(jogadorAtual))) ? true : false;
+		
 		proximoTurno();
 		
 		return (XadrezPeca) pecaCapturada;
@@ -80,6 +92,17 @@ public class XadrezPartida {
 		}
 		
 		return capturada;
+	}
+	
+	private void desfazerMovimento(Posicao origem, Posicao destino, Peca pecaCapturada) {
+		Peca p = tabuleiro.removerPeca(destino);
+		tabuleiro.informaPeca(p, origem);
+		
+		if(pecaCapturada != null) {
+			tabuleiro.informaPeca(pecaCapturada, destino);
+			pecasCapturadas.remove(pecaCapturada);
+			pecasDoTabuleiro.add(pecaCapturada);
+		}
 	}
 	
 	private void validarPosicao(Posicao posicao) {
@@ -106,6 +129,33 @@ public class XadrezPartida {
 		turno ++;
 		jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
 	}
+	
+	private Cor oponente(Cor cor) {
+		return (cor == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
+	}
+	
+	private XadrezPeca rei(Cor cor) {
+		List<Peca> list = pecasDoTabuleiro.stream().filter(x -> ((XadrezPeca)x).getCor() == cor).toList();
+		for(Peca p : list) {
+			if(p instanceof Rei) {
+				return (XadrezPeca)p;
+			}
+		}
+		throw new IllegalStateException("Não existe o rei na cor " + cor);
+	}
+	
+	private boolean testeCheck(Cor cor) {
+		Posicao posicaoRei = rei(cor).getXadrezPosicao().toPosicao();
+		List<Peca> pecasOponentes = pecasDoTabuleiro.stream().filter(x -> ((XadrezPeca)x).getCor() == oponente(cor)).toList();
+		
+		for(Peca p : pecasOponentes) {
+			boolean [][] mat = p.movimentosPossiveis();
+			if(mat[posicaoRei.getLinha()][posicaoRei.getColuna()]) {
+				return true;
+			}
+		}
+		return false;
+	} 
 	
 	private void informaNovaPeca(char coluna, int linha, XadrezPeca xadrezPeca) {
 		tabuleiro.informaPeca(xadrezPeca,new XadrezPosicao(coluna, linha).toPosicao());
