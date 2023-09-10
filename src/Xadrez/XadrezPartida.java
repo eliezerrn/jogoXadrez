@@ -15,6 +15,7 @@ public class XadrezPartida {
 	private Cor jogadorAtual;
 	private Tabuleiro tabuleiro;
 	private boolean check;
+	private boolean checkMate;
 	
 	private List <Peca> pecasDoTabuleiro = new ArrayList<>();
 	private List <Peca> pecasCapturadas = new ArrayList<>();
@@ -37,6 +38,10 @@ public class XadrezPartida {
 	
 	public boolean getCheck() {
 		return check;
+	}
+	
+	public boolean getCheckMate() {
+		return checkMate;
 	}
 	
 	public XadrezPeca [][] getPecas(){
@@ -74,7 +79,11 @@ public class XadrezPartida {
 		
 		check = (testeCheck(oponente(jogadorAtual))) ? true : false;
 		
-		proximoTurno();
+		if(testeCheckMate(oponente(jogadorAtual))) {
+			checkMate = true;
+		} else {		
+			proximoTurno();
+		}
 		
 		return (XadrezPeca) pecaCapturada;
 	}
@@ -157,6 +166,35 @@ public class XadrezPartida {
 		return false;
 	} 
 	
+	private boolean testeCheckMate(Cor cor) {
+		if(!testeCheck(cor)) {
+			return false;
+		}
+		
+		List<Peca> list = pecasDoTabuleiro.stream().filter(x -> ((XadrezPeca)x).getCor() == cor).toList();
+		
+		for(Peca p: list) {
+			boolean[][] mat = p.movimentosPossiveis();
+			
+			for(int i=0; i<tabuleiro.getLinhas(); i++) {
+				for(int j=0; j<tabuleiro.getColunas(); j++) {
+					if(mat[i][j]) {
+						Posicao origem = ((XadrezPeca)p).getXadrezPosicao().toPosicao();
+						Posicao destino = new Posicao(i, j);
+						Peca pecaCapturada = moverPeca(origem,destino);
+						boolean testeCheck = testeCheck(cor);
+						desfazerMovimento(origem, destino, pecaCapturada);
+						if(!testeCheck) {
+							return false;
+						}
+						
+					}
+				}
+			}
+		}
+		return true;
+	}
+	
 	private void informaNovaPeca(char coluna, int linha, XadrezPeca xadrezPeca) {
 		tabuleiro.informaPeca(xadrezPeca,new XadrezPosicao(coluna, linha).toPosicao());
 		pecasDoTabuleiro.add(xadrezPeca);
@@ -164,7 +202,13 @@ public class XadrezPartida {
 	
 	private void iniciarPartida() {	
 				
-		informaNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		
+		informaNovaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
+		informaNovaPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
+		/*informaNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
 		informaNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
         informaNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
         informaNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
@@ -177,6 +221,7 @@ public class XadrezPartida {
         informaNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
         informaNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
         informaNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
+        */
 	}
 	
 }
