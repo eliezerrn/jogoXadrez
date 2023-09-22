@@ -5,15 +5,15 @@ import MesaDoJogo.Tabuleiro;
 import Xadrez.Cor;
 import Xadrez.XadrezPeca;
 
-public class Torre extends XadrezPeca {
+public class Bispo extends XadrezPeca {
 
-	public Torre(Tabuleiro tabuleiro, Cor cor) {
+	public Bispo(Tabuleiro tabuleiro, Cor cor) {
 		super(tabuleiro, cor);
 	}
 
 	@Override
 	public String toString() {
-		return "T";
+		return "B";
 	}
 	
 	@Override
@@ -22,41 +22,41 @@ public class Torre extends XadrezPeca {
 		
 		Posicao p = new Posicao(0, 0);
 		
-		// acima
-		p.setValores(posicao.getLinha() - 1, posicao.getColuna());
+		// noroeste
+		p.setValores(posicao.getLinha() - 1, posicao.getColuna() - 1);
 		while(getTabuleiro().isPosicaoExiste(p) && !getTabuleiro().isTemPeca(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
-			p.setLinha(p.getLinha() - 1);
+			p.setValores(p.getLinha() -1, p.getColuna() -1);
 		}
 		if(getTabuleiro().isPosicaoExiste(p) && isPecaAdversaria(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		// esquerda
-		p.setValores(posicao.getLinha(), posicao.getColuna() -1);
+		// nordeste
+		p.setValores(posicao.getLinha() -1, posicao.getColuna() +1);
 		while(getTabuleiro().isPosicaoExiste(p) && !getTabuleiro().isTemPeca(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
-			p.setColuna(p.getColuna() -1);
+			p.setValores(p.getLinha() -1, p.getColuna() +1);
 		}
 		if(getTabuleiro().isPosicaoExiste(p) && isPecaAdversaria(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		// direita
-		p.setValores(posicao.getLinha(), posicao.getColuna() +1);
+		// suldeste
+		p.setValores(posicao.getLinha() +1, posicao.getColuna() +1);
 		while(getTabuleiro().isPosicaoExiste(p) && !getTabuleiro().isTemPeca(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
-			p.setColuna(p.getColuna() + 1);
+			p.setValores(p.getLinha() +1, p.getColuna() +1);
 		}
 		if(getTabuleiro().isPosicaoExiste(p) && isPecaAdversaria(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
 		}
 		
-		// abaixo
-		p.setValores(posicao.getLinha() + 1, posicao.getColuna());
+		// suldoeste
+		p.setValores(posicao.getLinha() + 1, posicao.getColuna() -1);
 		while(getTabuleiro().isPosicaoExiste(p) && !getTabuleiro().isTemPeca(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;
-			p.setLinha(p.getLinha() + 1);
+			p.setValores(p.getLinha() +1, p.getColuna() -1);
 		}
 		if(getTabuleiro().isPosicaoExiste(p) && isPecaAdversaria(p)) {
 			matriz[p.getLinha()][p.getColuna()] = true;

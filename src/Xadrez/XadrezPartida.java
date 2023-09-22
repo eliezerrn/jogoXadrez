@@ -6,6 +6,7 @@ import java.util.List;
 import MesaDoJogo.Peca;
 import MesaDoJogo.Posicao;
 import MesaDoJogo.Tabuleiro;
+import Xadrez.pecas.Bispo;
 import Xadrez.pecas.Peao;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
@@ -206,7 +207,9 @@ public class XadrezPartida {
 	private void iniciarPartida() {	
 				
 		informaNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		informaNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCO));
 		informaNovaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
 		informaNovaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
 		informaNovaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
@@ -218,7 +221,9 @@ public class XadrezPartida {
 		informaNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 	
 		informaNovaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+		informaNovaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETO));
 		informaNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		informaNovaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETO));
 		informaNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
 		informaNovaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
 		informaNovaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
