@@ -6,6 +6,7 @@ import java.util.List;
 import MesaDoJogo.Peca;
 import MesaDoJogo.Posicao;
 import MesaDoJogo.Tabuleiro;
+import Xadrez.pecas.Peao;
 import Xadrez.pecas.Rei;
 import Xadrez.pecas.Torre;
 
@@ -204,26 +205,30 @@ public class XadrezPartida {
 	
 	private void iniciarPartida() {	
 				
-		informaNovaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));
-		informaNovaPeca('d', 1, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
 		informaNovaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
-		
-		informaNovaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
-		informaNovaPeca('a', 8, new Rei(tabuleiro, Cor.PRETO));
-		/*informaNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRANCO));
-		informaNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRANCO));
-        informaNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRANCO));
-        informaNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRANCO));
-        informaNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
-        informaNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
-
-        informaNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETO));
-        informaNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETO));
-        informaNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETO));
-        informaNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETO));
-        informaNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETO));
-        informaNovaPeca('d', 8, new Rei(tabuleiro, Cor.PRETO));
-        */
+		informaNovaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('d', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('e', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('f', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('g', 2, new Peao(tabuleiro, Cor.BRANCO));
+		informaNovaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
+	
+		informaNovaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+		informaNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+		informaNovaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
+		informaNovaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('d', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('e', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('f', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('g', 7, new Peao(tabuleiro, Cor.PRETO));
+		informaNovaPeca('h', 7, new Peao(tabuleiro, Cor.PRETO));
+	
 	}
 	
 }
